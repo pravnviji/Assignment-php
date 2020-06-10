@@ -8,7 +8,7 @@ This is a String Operation console app built using PHP and Symfony/Console.
 - Symfony/Console
 
 ### Installation
-* Clone this repo [here](https://github.com/philipszdavido/php-console-app-using-symfony).
+* Clone this repo [here](https://github.com/pravnviji/Assignment-php).
 * cd `php-console-app-using-symfony`
 * Run `composer require symfony/console`
 
