@@ -1,0 +1,15 @@
+{
+    "require": {
+        "symfony/console": "^5.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Console\\": "src/"
+        },
+        "classmap": ["src"]
+    },
+    "require-dev": {
+        "symfony/phpunit-bridge": "^5.1",
+        "phpunit/phpunit": "9.0"
+    }
+}
