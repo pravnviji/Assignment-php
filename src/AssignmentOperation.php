@@ -25,6 +25,9 @@ class AssignmentOperation extends SymfonyCommand
     }
     */
 
+    /* Allow user to keen the input
+    * @param ( String:input, String:output)
+    */
     public function getUserInput(InputInterface $input, OutputInterface $output)
     {
         $helper = $this -> getHelper('question');
@@ -41,7 +44,10 @@ class AssignmentOperation extends SymfonyCommand
         $output -> write($this -> createCSV($name, $output));
     }
 
-    public function createCSV($record, $output){
+     /* Fn helps to create CSV file
+    * @param ( String:record, String:output)
+    */
+    public function createCSV($record , $output){
        $csv=array();
        $csv=preg_split('//', $record, -1, PREG_SPLIT_NO_EMPTY);
        $csv = implode(",",$csv);
@@ -51,6 +57,9 @@ class AssignmentOperation extends SymfonyCommand
        $output -> write("CSV created");
     }
 
+    /* Fn helps to convert the selected index of char
+    * @param ( Array:text)
+    */
     public function convertSelectedChar($text) {
         $array = array();
         foreach ($text as $key => $value){
