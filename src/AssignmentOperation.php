@@ -1,4 +1,5 @@
-<?php namespace Console;
+<?php declare(strict_types=1);
+namespace Console;
 use Symfony\Component\Console\Command\Command as SymfonyCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -14,9 +15,12 @@ class AssignmentOperation extends SymfonyCommand
     public $upperString;
     public $mixedString;
 
-    /* Allow user to keen the input
-    * @param ( String:input, String:output)
-    */
+    /**
+     * Get user input to do string operation and return response in console
+     * 
+     * @param (string $input, string $output)
+     * @return none
+     */ 
     public function getUserInput(InputInterface $input, OutputInterface $output)
     {
         $helper = $this -> getHelper('question');
@@ -33,23 +37,29 @@ class AssignmentOperation extends SymfonyCommand
         $output -> write($this -> createCSV($name, $output));
     }
 
-     /* Fn helps to create CSV file
-    * @param ( String:record, String:output)
-    */
+    /**
+     * Parses the user input and generate output in CSV format
+     * 
+     * @param (string : $record, null: $output)
+     * @return none
+     */
     public function createCSV($record , $output){
        $csv=array();
        $csv=preg_split('//', $record, -1, PREG_SPLIT_NO_EMPTY);
        $csv = implode(",",$csv);
-       $csv_handler = fopen ('csvfile.csv','w');
+       $csv_handler = fopen ('temp.csv','w');
        fwrite ($csv_handler,trim($csv));
        fclose ($csv_handler);
        $output -> write("CSV created");
     }
 
-    /* Fn helps to convert the selected index of char
-    * @param ( Array:text)
-    */
-    public function convertSelectedChar($text) {
+    /** 
+     *  Convert the selected index of character to Uppercase
+     * 
+     * @param (array: $text)
+     * @return array
+     */
+    public function convertSelectedChar($text):array {
         $array = array();
         foreach ($text as $key => $value){
             if($key == 1 || $key == 3 || $key == 7 || $key == 9 ){
@@ -61,9 +71,11 @@ class AssignmentOperation extends SymfonyCommand
         return $array;
      }
 
-     
- /*   Below script helps to test the basic unit test
-
+     /**
+      *  Below script helps to test the basic unit test - Commented for testing purpose
+      * 
+      */
+ /*  
     public $firstName ;
     public $lastName ;
 
