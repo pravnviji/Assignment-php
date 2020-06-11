@@ -14,17 +14,6 @@ class AssignmentOperation extends SymfonyCommand
     public $upperString;
     public $mixedString;
 
- /*   Below script helps to test the basic unit test
-
-    public $firstName ;
-    public $lastName ;
-
-    public function getFullName(){
-        echo "getFullname";
-        return trim("$this->firstName $this->lastName");
-    }
-    */
-
     /* Allow user to keen the input
     * @param ( String:input, String:output)
     */
@@ -71,4 +60,16 @@ class AssignmentOperation extends SymfonyCommand
         }
         return $array;
      }
+
+     
+ /*   Below script helps to test the basic unit test
+
+    public $firstName ;
+    public $lastName ;
+
+    public function getFullName(){
+        echo "getFullname";
+        return trim("$this->firstName $this->lastName");
+    }
+    */
 }

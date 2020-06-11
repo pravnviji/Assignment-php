@@ -6,8 +6,17 @@ use Symfony\Component\Console\Application;
 
 class AssignmentOperationTest extends TestCase
 {
+    public  function testGetUserInput(){
+      require(getcwd()."../src/AssignmentOperation.php");
 
-  /*
+      $assignment = new \Console\AssignmentOperation();
+      $input ="hello world";
+      $output="";
+      $expected = "HELLO WORLD hElLo wOrLd";
+      $this->assertEquals($expected, trim($assignment->getUserInput($input,$output)));
+    }
+
+      /*
    Below script helps to test the basic unit test. Its working.
 
     public function testGetFullName(){
@@ -20,13 +29,4 @@ class AssignmentOperationTest extends TestCase
         $this -> assertEquals('Praveen babu', $assignment -> getFullName());
     }*/
 
-    public  function testGetUserInput(){
-      require(getcwd()."../src/AssignmentOperation.php");
-
-      $assignment = new \Console\AssignmentOperation();
-      $input ="helloworld";
-      $output="";
-      $expected = "HELLO WORLD hElLo wOrLd";
-      $this->assertEquals($expected, trim($assignment->getUserInput($input,$output)));
-    }
 }
