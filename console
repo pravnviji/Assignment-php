@@ -16,3 +16,4 @@ $app = new Application('Assignment App', 'v1.0.0');
 $app -> add(new CommandCenter());
 
 $app -> run();
+

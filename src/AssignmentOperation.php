@@ -11,33 +11,47 @@ use Symfony\Component\Console\Question\Question;
  */
 class AssignmentOperation extends SymfonyCommand
 {
-    
-    protected function getUserInput(InputInterface $input, OutputInterface $output)
+    public $upperString;
+    public $mixedString;
+
+ /*   Below script helps to test the basic unit test
+
+    public $firstName ;
+    public $lastName ;
+
+    public function getFullName(){
+        echo "getFullname";
+        return trim("$this->firstName $this->lastName");
+    }
+    */
+
+    public function getUserInput(InputInterface $input, OutputInterface $output)
     {
         $helper = $this -> getHelper('question');
         $default = 'hello world';
         $outputQ = new Question('Please enter the string? DEFAULT - ['. $default .']: ', $default);
         $name = $helper -> ask( $input, $output, $outputQ);
-        $arr1 = str_split($name);
+        $upperString = strtoupper($name);
+        $mixedString =implode("", $this -> convertSelectedChar(str_split($name)));
         $output -> writeln([
-            strtoupper($name),
-            implode("", $this -> convertSelectedChar($arr1,1))
+            trim($upperString),
+            trim($mixedString)
         ]);
-        $output -> write($this -> createCSV($name));
+
+        $output -> write($this -> createCSV($name, $output));
     }
 
-    private function createCSV($record){
+    public function createCSV($record, $output){
        $csv=array();
        $csv=preg_split('//', $record, -1, PREG_SPLIT_NO_EMPTY);
-      // $csv = join(",",$csv);
        $csv = implode(",",$csv);
        $csv_handler = fopen ('csvfile.csv','w');
-       fwrite ($csv_handler,$csv);
+       fwrite ($csv_handler,trim($csv));
        fclose ($csv_handler);
-       echo 'CSV created';
+       $output -> write("CSV created");
     }
 
-    private  function convertSelectedChar($text) {
+    public function convertSelectedChar($text) {
         $array = array();
         foreach ($text as $key => $value){
             if($key == 1 || $key == 3 || $key == 7 || $key == 9 ){
